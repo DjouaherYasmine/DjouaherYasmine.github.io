@@ -40,7 +40,6 @@
       width: 100%;
     }
 
-    /* IMPORTANT: force Tableau to use full width */
     .tableauPlaceholder {
       width: 100% !important;
     }
@@ -58,12 +57,13 @@
 
   <div class="card">
 
-    <div class='tableauPlaceholder' id='viz1776783992569' style='position: relative'>
+    <!-- UPDATED TABLEAU EMBED -->
+    <div class='tableauPlaceholder' id='viz1776786357262' style='position: relative'>
 
       <noscript>
         <a href='#'>
-          <img alt='Tableau Dashboard'
-               src='https://public.tableau.com/static/images/TP/TP1_17685813014810/Tableaudebord1/1_rss.png'
+          <img alt='Tableau de bord 1'
+               src='https://public.tableau.com/static/images/49/49YKMM7T7/1_rss.png'
                style='border:none; width:100%;' />
         </a>
       </noscript>
@@ -72,12 +72,13 @@
 
         <param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' />
         <param name='embed_code_version' value='3' />
-        <param name='site_root' value='' />
-        <param name='name' value='TP1_17685813014810/Tableaudebord1' />
-        <param name='tabs' value='no' />
-        <param name='toolbar' value='no' />
+        <param name='path' value='shared/49YKMM7T7' />
+
+        <param name='toolbar' value='yes' />
+
         <param name='static_image'
-               value='https://public.tableau.com/static/images/TP/TP1_17685813014810/Tableaudebord1/1.png' />
+               value='https://public.tableau.com/static/images/49/49YKMM7T7/1.png' />
+
         <param name='animate_transition' value='yes' />
         <param name='display_static_image' value='yes' />
         <param name='display_spinner' value='yes' />
@@ -94,12 +95,27 @@
 </div>
 
 <script type='text/javascript'>
-  var divElement = document.getElementById('viz1776783992569');
+  var divElement = document.getElementById('viz1776786357262');
   var vizElement = divElement.getElementsByTagName('object')[0];
 
-  // 🚀 KEY FIX: full width + proper height (no compression)
-  vizElement.style.width = '100%';
-  vizElement.style.height = (window.innerHeight * 0.85) + 'px';
+  // 🚀 Responsive + better height control
+  function resizeViz() {
+    var width = divElement.offsetWidth;
+
+    if (width > 800) {
+      vizElement.style.width = '100%';
+      vizElement.style.height = (width * 0.75) + 'px';
+    } else if (width > 500) {
+      vizElement.style.width = '100%';
+      vizElement.style.height = (width * 0.8) + 'px';
+    } else {
+      vizElement.style.width = '100%';
+      vizElement.style.height = '900px';
+    }
+  }
+
+  resizeViz();
+  window.addEventListener('resize', resizeViz);
 
   var scriptElement = document.createElement('script');
   scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';
